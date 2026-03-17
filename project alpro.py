@@ -1,19 +1,19 @@
 import time
 import os
 
-# ====== PENGATURAN ======
-DELAY = 0.8   # Ubah ke 1.0 kalau mau lebih lambat
-# =========================
+DELAY = 0.4  # biar masih enak ditonton (boleh 0.6 kalau mau lebih lambat)
 
 maze = [
-    [1,1,0,1,1,0,1,1],
-    [0,1,0,1,0,1,0,1],
-    [1,1,1,1,0,1,1,1],
-    [1,0,0,1,1,1,0,0],
-    [1,1,1,0,0,1,1,1],
-    [0,0,1,1,1,0,0,1],
-    [1,1,1,0,1,1,1,1],
-    [0,0,1,1,1,0,0,1]
+    [1,1,0,1,0,1,1,0,1,1],
+    [0,1,0,1,0,1,0,1,0,1],
+    [1,1,1,1,1,1,0,1,1,1],
+    [1,0,0,0,0,1,0,0,0,1],
+    [1,1,1,1,0,1,1,1,0,1],
+    [0,0,0,1,0,0,0,1,0,1],
+    [1,1,1,1,1,1,0,1,1,1],
+    [1,0,0,0,0,1,0,0,0,1],
+    [1,1,1,1,0,1,1,1,1,1],
+    [0,0,0,1,1,1,0,0,0,1]
 ]
 
 N = len(maze)
@@ -64,11 +64,11 @@ def solve(x, y):
         steps += 1
         print_maze(x, y, f"➡ Gerak ke ({x},{y})")
 
-        # Urutan gerakan: bawah, kanan, atas, kiri
-        if solve(x+1, y): return True
-        if solve(x, y+1): return True
-        if solve(x-1, y): return True
-        if solve(x, y-1): return True
+        # URUTAN SENGAJA BIKIN NYASAR DULU 😈
+        if solve(x, y-1): return True   # kiri
+        if solve(x-1, y): return True   # atas
+        if solve(x, y+1): return True   # kanan
+        if solve(x+1, y): return True   # bawah
 
         # BACKTRACK
         solution[x][y] = 0
